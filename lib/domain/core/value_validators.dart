@@ -10,3 +10,11 @@ Either<ValueFailure<String>, String> validateEmailAddress(String input) {
     throw left(ValueFailure.invalidEmail(input));
   }
 }
+
+Either<ValueFailure<String>, String> validadePassword(String input) {
+  if (input.length >= 6) {
+    return right(input);
+  } else {
+    throw left(ValueFailure.shortPassword(input));
+  }
+}
