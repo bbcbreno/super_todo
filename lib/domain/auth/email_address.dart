@@ -1,5 +1,10 @@
+import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'email_address.freezed.dart';
+
 class EmailAddress {
-  final String value;
+  final Either<ValueFailure<String>, String> value;
 
   factory EmailAddress(String input) {
     return EmailAddress._(
@@ -23,12 +28,19 @@ class EmailAddress {
   int get hashCode => value.hashCode;
 }
 
-String validateEmailAddress(String input) {
+Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   const emailRegex =
       r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
   if (RegExp(emailRegex).hasMatch(input)) {
-    return input;
+    return right(input);
   } else {
-    throw Error();
+    throw left(ValueFailure.invalidEmail(input));
   }
+}
+
+@freezed
+abstract class ValueFailure<T> with _$ValueFailure<T> {
+  const factory ValueFailure.invalidEmail(String failedValue) = InvalidEmail<T>;
+  const factory ValueFailure.shortPassword(String failedValue) =
+      ShortPassword<T>;
 }
