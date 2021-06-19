@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:super_todo/injection.dart';
 
 import 'domain/auth/value_objects.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  configureInjection(Environment.prod);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
