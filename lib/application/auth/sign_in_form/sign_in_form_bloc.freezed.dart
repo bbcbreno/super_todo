@@ -704,6 +704,7 @@ class _$SignInFormStateTearOff {
   _SignInFormState call(
       EmailAddress emailAddress,
       Password password,
+      // ignore: avoid_positional_boolean_parameters
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption) {
@@ -916,6 +917,7 @@ abstract class _SignInFormState implements SignInFormState {
   const factory _SignInFormState(
           EmailAddress emailAddress,
           Password password,
+          // ignore: avoid_positional_boolean_parameters
           bool showErrorMessages,
           bool isSubmitting,
           Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption) =
