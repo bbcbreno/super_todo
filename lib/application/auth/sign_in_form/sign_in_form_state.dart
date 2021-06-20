@@ -11,9 +11,10 @@ abstract class SignInFormState with _$SignInFormState {
     Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
   ) = _SignInFormState;
 
+  // TODO: fix null safety, currect with initial valied values
   factory SignInFormState.initial() => SignInFormState(
-        EmailAddress(''),
-        Password(''),
+        EmailAddress('mail@test.com'),
+        Password('123456'),
         false,
         false,
         none(),
